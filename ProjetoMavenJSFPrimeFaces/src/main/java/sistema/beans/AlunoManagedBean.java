@@ -1,8 +1,6 @@
 package sistema.beans;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -35,9 +33,4 @@ public class AlunoManagedBean {
 	public List<Aluno> getAlunos() {
 		return service.getAlunos();
 	}
-
-	
-	
-	
-
 }
