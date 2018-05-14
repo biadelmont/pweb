@@ -7,70 +7,58 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import sistema.modelos.Aluno;
+import sistema.modelos.Professor;
 
 
-public class AlunoService {
+public class ProfessorService {
 
 	private static EntityManagerFactory emf;
 	
-	public AlunoService()
+	public ProfessorService()
 	{
 	      emf = Persistence.createEntityManagerFactory("ProjetoMavenJSFPrimeFaces");
 	}
 	
-	public void salvar(Aluno aluno) //insert into values no banco de dados
-	{
-	    
+	public void salvar(Professor professor) //insert into values no banco de dados
+	{    
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();	
-			em.persist(aluno);
+			em.persist(professor);
 		em.getTransaction().commit();	
 	    em.close();
-		
 	}
 	
 	
 	@SuppressWarnings("unchecked")
-	public List <Aluno> getAlunos()
-	{
-		
-		List <Aluno >alunos;
+	public List <Professor> getProfessores()
+	{		
+		List <Professor>professores;
 		
 		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("Select a From Aluno a");
-		alunos = q.getResultList();
+		Query q = em.createQuery("Select a From Professor a");
+		professores = q.getResultList();
 		em.close();
 		
-		return alunos;
-		
+		return professores;
 	}
 
-	public void alterar(Aluno aluno) {
+	public void alterar(Professor professor) {
 
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();	
-			em.merge(aluno);
+			em.merge(professor);
 		em.getTransaction().commit();	
 	    em.close();
-
-		
-		
 	}
 
 	
-	public void remover(Aluno aluno) {
+	public void remover(Professor professor) {
 
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();	
-			aluno = em.find(Aluno.class,aluno.getMatricula());
-			em.remove(aluno);
+		professor = em.find(Professor.class,professor.getMatricula());
+			em.remove(professor);
 		em.getTransaction().commit();	
 	    em.close();
-
-		
-		
 	}
-	
-	
 }
